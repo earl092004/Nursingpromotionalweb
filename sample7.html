@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>St. Paul University Philippines - Nursing Program</title>
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        
+        body {
+            overflow-x: hidden;
+        }
+        
+        /* Colors */
+        :root {
+            --green-primary: #0B6E4F;
+            --yellow-primary: #FFD700;
+            --white: #FFFFFF;
+            --light-blue: #E6F7FF;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: #111;
+            color: white;
+            padding: 10px 0;
+            position: relative;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo {
+            width: 80px;
+            height: 80px;
+            background-color: var(--yellow-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+        }
+        
+        .logo-text h1 {
+            color: var(--green-primary);
+            font-size: 24px;
+            font-weight: bold;
+            line-height: 1.2;
+        }
+        
+        .logo-text p {
+            color: var(--yellow-primary);
+            font-size: 14px;
+            text-transform: uppercase;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 20px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+            transition: all 0.3s ease;
+        }
+        
+        nav ul li a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background-color: #222;
+            position: relative;
+            color: white;
+            padding: 80px 0;
+            overflow: hidden;
+        }
+        
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero h2 {
+            font-size: 80px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .hero h2 span {
+            color: var(--green-primary);
+        }
+        
+        .hero h3 {
+            font-size: 60px;
+            margin-bottom: 30px;
+        }
+        
+        .enroll-button {
+            display: inline-block;
+            background-color: var(--green-primary);
+            color: white;
+            padding: 15px 40px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 30px;
+            font-size: 18px;
+            transition: all 0.3s ease;
+        }
+        
+        .enroll-button:hover {
+            background-color: #095a3f;
+            transform: translateY(-3px);
+        }
+        
+        /* Stats Section */
+        .stats {
+            display: flex;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+            margin-top: -50px;
+            position: relative;
+            z-index: 3;
+        }
+        
+        .stat-box {
+            width: 30%;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            color: white;
+        }
+        
+        .stat-box:nth-child(1) {
+            background-color: var(--green-primary);
+        }
+        
+        .stat-box:nth-child(2), .stat-box:nth-child(3) {
+            background-color: var(--yellow-primary);
+            color: #333;
+        }
+        
+        .stat-box h3 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        
+        .stat-box .year {
+            font-size: 52px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+        
+        /* Welcome Section */
+        .welcome {
+            padding: 100px 0 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+        }
+        
+        .welcome-image {
+            flex: 0 0 40%;
+            padding-right: 40px;
+        }
+        
+        .welcome-image img {
+            width: 100%;
+            border-radius: 5px;
+        }
+        
+        .welcome-content {
+            flex: 0 0 60%;
+        }
+        
+        .welcome-badge {
+            display: inline-block;
+            background-color: var(--green-primary);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .welcome-content h2 {
+            color: var(--green-primary);
+            font-size: 48px;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+        
+        .welcome-content p {
+            color: #555;
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+        
+        .about-button {
+            display: inline-flex;
+            align-items: center;
+            background-color: var(--green-primary);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        .about-button svg {
+            margin-left: 10px;
+        }
+        
+        /* Student Perspectives */
+        .perspectives {
+            background-color: var(--green-primary);
+            padding: 60px 0;
+            color: white;
+        }
+        
+        .perspectives-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .perspectives h2 {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 50px;
+        }
+        
+        .student-videos {
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .video-card {
+            flex: 0 0 30%;
+            position: relative;
+            cursor: pointer;
+        }
+        
+        .video-card img {
+            width: 100%;
+            border-radius: 5px;
+        }
+        
+        .play-button {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            background-color: var(--yellow-primary);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .play-button svg {
+            width: 20px;
+            height: 20px;
+            fill: #333;
+        }
+        
+        .cloud-decoration {
+            margin-top: 40px;
+            display: flex;
+            justify-content: center;
+        }
+        
+        .cloud {
+            width: 150px;
+            height: 80px;
+            background-color: var(--light-blue);
+            border-radius: 40px;
+            margin: 0 15px;
+        }
+        
+        /* Why Choose Us */
+        .why-choose {
+            display: flex;
+        }
+        
+        .why-text {
+            flex: 0 0 50%;
+            padding: 80px;
+            background-color: white;
+        }
+        
+        .why-text h2 {
+            color: var(--green-primary);
+            font-size: 64px;
+            line-height: 1;
+            margin-bottom: 20px;
+        }
+        
+        .why-text h2 span {
+            color: var(--yellow-primary);
+        }
+        
+        .decoration {
+            flex: 0 0 50%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+        }
+        
+        .decoration-box {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .decoration-box.cloud {
+            background-color: var(--light-blue);
+        }
+        
+        .decoration-box.hills {
+            background: linear-gradient(to bottom, var(--light-blue) 60%, #a0d995 60%);
+        }
+        
+        /* Mission Section */
+        .mission {
+            background-color: var(--yellow-primary);
+            padding: 40px 0;
+            text-align: center;
+        }
+        
+        .mission-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .mission h3 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .mission h3:before, .mission h3:after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            width: 100px;
+            height: 1px;
+            background-color: #333;
+        }
+        
+        .mission h3:before {
+            right: 100%;
+            margin-right: 20px;
+        }
+        
+        .mission h3:after {
+            left: 100%;
+            margin-left: 20px;
+        }
+        
+        .mission p {
+            color: #333;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        /* Accreditations */
+        .accreditations {
+            background-color: var(--green-primary);
+            padding: 40px 0;
+            color: white;
+        }
+        
+        .accreditations-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+        
+        .accreditations h2 {
+            font-size: 30px;
+            margin-bottom: 40px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .accreditations h2:before, .accreditations h2:after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            width: 150px;
+            height: 1px;
+            background-color: var(--yellow-primary);
+        }
+        
+        .accreditations h2:before {
+            right: 100%;
+            margin-right: 20px;
+        }
+        
+        .accreditations h2:after {
+            left: 100%;
+            margin-left: 20px;
+        }
+        
+        .accreditation-boxes {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 40px;
+        }
+        
+        .accreditation-box {
+            flex: 0 0 22%;
+            background-color: var(--yellow-primary);
+            height: 100px;
+            border-radius: 10px;
+        }
+        
+        /* Contact Section */
+        .contact {
+            background: linear-gradient(rgba(0, 100, 0, 0.8), rgba(0, 100, 0, 0.8)), url('/api/placeholder/800/400') center/cover no-repeat;
+            padding: 60px 0;
+            color: white;
+            text-align: center;
+        }
+        
+        .contact-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .contact h2 {
+            font-size: 36px;
+            color: var(--yellow-primary);
+            margin-bottom: 20px;
+        }
+        
+        .contact p {
+            font-size: 18px;
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .contact-details {
+            margin-bottom: 20px;
+        }
+        
+        .contact-details h3 {
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+        
+        .contact-details p {
+            margin-bottom: 10px;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .hero h2 {
+                font-size: 60px;
+            }
+            
+            .hero h3 {
+                font-size: 40px;
+            }
+            
+            .stats {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .stat-box {
+                width: 80%;
+                margin-bottom: 20px;
+            }
+            
+            .welcome {
+                flex-direction: column;
+            }
+            
+            .welcome-image {
+                flex: 0 0 100%;
+                padding-right: 0;
+                margin-bottom: 40px;
+            }
+            
+            .welcome-content {
+                flex: 0 0 100%;
+            }
+            
+            .student-videos {
+                flex-direction: column;
+            }
+            
+            .video-card {
+                flex: 0 0 100%;
+                margin-bottom: 30px;
+            }
+            
+            .why-choose {
+                flex-direction: column;
+            }
+            
+            .why-text {
+                flex: 0 0 100%;
+                padding: 40px 20px;
+            }
+            
+            .decoration {
+                flex: 0 0 100%;
+                height: 400px;
+            }
+            
+            .accreditation-boxes {
+                flex-wrap: wrap;
+            }
+            
+            .accreditation-box {
+                flex: 0 0 48%;
+                margin-bottom: 20px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+            }
+            
+            nav ul {
+                margin-top: 20px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 5px;
+            }
+            
+            .hero h2 {
+                font-size: 40px;
+            }
+            
+            .hero h3 {
+                font-size: 30px;
+            }
+            
+            .accreditation-box {
+                flex: 0 0 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="header-container">
+            <div class="logo-container">
+                <div class="logo">
+                    <!-- University logo placeholder -->
+                    <svg width="50" height="50" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="100" height="100" fill="#0B6E4F"/>
+                        <path d="M30 70L50 30L70 70H30Z" fill="white"/>
+                    </svg>
+                </div>
+                <div class="logo-text">
+                    <h1>St. Paul University Philippines</h1>
+                    <p>CARITAS. VERITAS. SCIENTIA.</p>
+                </div>
+            </div>
+            
+            <nav>
+                <ul>
+                    <li><a href="#">Subject Offerings</a></li>
+                    <li><a href="#">Facilities</a></li>
+                    <li><a href="#">Faculty/Staff</a></li>
+                    <li><a href="#">Best Features</a></li>
+                    <li><a href="#">Achievements</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <h2>Your <span>Nursing Career</span></h2>
+            <h3>Starts here!</h3>
+            <a href="#" class="enroll-button">Enroll Now</a>
+        </div>
+    </section>
+    
+    <!-- Stats Boxes -->
+    <div class="stats">
+        <div class="stat-box">
+            <h3>Passing Rate Through the years</h3>
+        </div>
+        <div class="stat-box">
+            <div class="year">2025</div>
+        </div>
+        <div class="stat-box">
+            <div class="year">2024</div>
+        </div>
+    </div>
+    
+    <!-- Welcome BSN Section -->
+    <section class="welcome">
+        <div class="welcome-image">
+            <img src="/api/placeholder/400/300" alt="Nursing students in clinical setting">
+        </div>
+        <div class="welcome-content">
+            <div class="welcome-badge">Welcome To</div>
+            <h2>BACHELOR<br>OF<br>SCIENCE IN<br>NURSING</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse sollicitudin enim vitae lacus gravida maximus. Sed luctus euismod elit, at accumsan nulla feugiat vel. Pellentesque ac interdum ipsum. Sed vitae tristique sem. Morbi ut ipsum in nibh gravida semper. Fusce a tincidunt turpis, id sagittis magna. Aliquam maximus tincidunt dolor.</p>
+            <a href="#" class="about-button">
+                ABOUT US
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M9 18L15 12L9 6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </a>
+        </div>
+    </section>
+    
+    <!-- Student Perspectives -->
+    <section class="perspectives">
+        <div class="perspectives-container">
+            <h2>STUDENT PERSPECTIVES</h2>
+            <div class="student-videos">
+                <div class="video-card">
+                    <img src="/api/placeholder/360/300" alt="Student perspective video">
+                    <div class="play-button">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8 5L19 12L8 19V5Z" fill="black"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="video-card">
+                    <img src="/api/placeholder/360/300" alt="Student perspective video">
+                    <div class="play-button">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8 5L19 12L8 19V5Z" fill="black"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="video-card">
+                    <img src="/api/placeholder/360/300" alt="Student perspective video">
+                    <div class="play-button">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8 5L19 12L8 19V5Z" fill="black"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            <div class="cloud-decoration">
+                <div class="cloud"></div>
+                <div class="cloud"></div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Why Choose Us -->
+    <section class="why-choose">
+        <div class="why-text">
+            <h2>WHY<br>CHOOSE<br><span>US?</span></h2>
+        </div>
+        <div class="decoration">
+            <div class="decoration-box hills"></div>
+            <div class="decoration-box cloud"></div>
+            <div class="decoration-box cloud"></div>
+            <div class="decoration-box hills"></div>
+        </div>
+    </section>
+    
+    <!-- Mission Section -->
+    <section class="mission">
+        <div class="mission-container">
+            <h3>OUR MISSION</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse sollicitudin enim vitae lacus gravida maximus. Sed luctus euismod elit, at accumsan nulla feugiat vel. Pellentesque ac interdum ipsum. Sed vitae tristique sem. Morbi ut ipsum in nibh gravida semper. Fusce a tincidunt turpis, id sagittis magna. Aliquam maximus tincidunt dolor.</p>
+        </div>
+    </section>
+    
+    <!-- Accreditations -->
+    <section class="accreditations">
+        <div class="accreditations-container">
+            <h2>ACCREDITATIONS</h2>
+            <div class="accreditation-boxes">
+                <div class="accreditation-box"></div>
+                <div class="accreditation-box"></div>
+                <div class="accreditation-box"></div>
+                <div class="accreditation-box"></div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Contact Section -->
+    <section class="contact">
+        <div class="contact-container">
+            <h2>Have Questions?</h2>
+            <p>Reach out to us, and we'll provide you with the information you need promptly.</p>
+            
+            <div class="contact-details">
+                <h3>CONTACT DETAILS:</h3>
+                <p>396-1987 to 396-1994</p>
+                <p>spupadmin@spup.edu.ph</p>
+                <p>Tuguegarao City, Cagayan 3500</p>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
