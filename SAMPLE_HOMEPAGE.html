@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>St. Paul University Philippines - Nursing Program</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    
     <style>
         /* Reset and Base Styles */
         * {
@@ -40,22 +41,21 @@
             top: 0;
             z-index: 100;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: opacity 0.3s ease, box-shadow 0.3s ease;
         }
         
         .header.scrolled {
-            transform: translateY(-40px); /* Hide the top part when scrolled */
-            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+            opacity: 0.5; /* Reduce opacity when scrolled */
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         }
         
         .header.scrolled-up {
-            transform: translateY(0); /* Show full header when scrolling up */
+            opacity: 1; /* Return to full opacity when scrolling up */
         }
         
         .header-top {
             background-color: var(--green-dark);
             padding: 8px 40px;
-            transition: height 0.3s ease;
         }
         
         .header-top-content {
@@ -84,23 +84,21 @@
             justify-content: space-between;
             align-items: center;
             padding: 15px 40px;
-            max-width: 1200px;
+            max-width: 1500px;
             margin: 0 auto;
+            transition: padding 0.3s ease;
         }
         
         .logo-container {
             display: flex;
             align-items: center;
+
         }
         
         .logo-img {
-            height: 60px;
+            height: 90px;
             margin-right: 15px;
             transition: height 0.3s ease;
-        }
-        
-        .header.scrolled .logo-img {
-            height: 50px; /* Slightly smaller logo when scrolled */
         }
         
         /* Main Navigation */
@@ -120,7 +118,7 @@
             color: white;
             text-decoration: none;
             font-weight: 600;
-            font-size: 0.95rem;
+            font-size: 1.1rem;
             text-transform: uppercase;
             letter-spacing: 0.5px;
             transition: all 0.3s ease;
@@ -155,6 +153,24 @@
         }
         
         /* Dropdown Styles */
+            /* Dropdown toggle specific styling */
+        .nav-link.dropdown-toggle {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-right: 5px;
+        }
+
+        .nav-link.dropdown-toggle i {
+            font-size: 0.8rem;
+            margin-left: 5px;
+            transition: transform 0.3s ease;
+        }
+
+        /* Optional: rotate the chevron when hovering */
+        .nav-item:hover .nav-link.dropdown-toggle i {
+            transform: rotate(180deg);
+        }
         .dropdown {
             position: relative;
         }
@@ -168,7 +184,7 @@
             top: 100%;
             left: 0;
             background-color: white;
-            min-width: 220px;
+            min-width: 240px;
             box-shadow: 0 8px 16px rgba(0,0,0,0.1);
             border-radius: 4px;
             opacity: 0;
@@ -192,11 +208,12 @@
         
         .dropdown-menu a {
             display: block;
-            padding: 10px 20px;
+            padding: 12px 20px; /* Increased padding */
             color: #333;
             text-decoration: none;
-            font-size: 0.9rem;
+            font-size: 1rem; /* Increased font size from 0.9rem */
             transition: all 0.2s ease;
+            font-weight: 500; /* Added font weight for more prominence */
         }
         
         .dropdown-menu a:hover {
@@ -381,10 +398,6 @@
             .logo-img {
                 height: 50px;
             }
-            
-            .header.scrolled {
-                transform: translateY(-30px);
-            }
         }
         
         @media (max-width: 480px) {
@@ -398,98 +411,13 @@
             }
         }
         
-        
-        /* Mobile Menu */
-        .menu-toggle {
-            display: none;
-            flex-direction: column;
-            justify-content: space-between;
-            width: 30px;
-            height: 21px;
-            cursor: pointer;
+        .header.scrolled .header-main {
+            padding: 8px 40px; /* Reduce padding when scrolled */
         }
-        
-        .menu-toggle span {
-            display: block;
-            height: 3px;
-            width: 100%;
-            background-color: white;
-            border-radius: 3px;
-            transition: all 0.3s ease;
+
+        .header.scrolled .logo-img {
+            height: 60px; /* Reduce logo size when scrolled */
         }
-        
-        .mobile-nav {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: var(--green-primary);
-            z-index: 1000;
-            padding: 20px;
-            transform: translateY(-100%);
-            transition: transform 0.3s ease;
-        }
-        
-        .mobile-nav.active {
-            transform: translateY(0);
-        }
-        
-        .mobile-nav-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
-        }
-        
-        .mobile-nav-close {
-            width: 30px;
-            height: 30px;
-            position: relative;
-            cursor: pointer;
-        }
-        
-        .mobile-nav-close::before,
-        .mobile-nav-close::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background-color: white;
-            border-radius: 3px;
-        }
-        
-        .mobile-nav-close::before {
-            transform: rotate(45deg);
-        }
-        
-        .mobile-nav-close::after {
-            transform: rotate(-45deg);
-        }
-        
-        .mobile-nav-links {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-        
-        .mobile-nav-links a {
-            color: white;
-            text-decoration: none;
-            font-size: 1.2rem;
-            font-weight: 600;
-            padding: 10px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            transition: color 0.3s ease;
-        }
-        
-        .mobile-nav-links a:hover {
-            color: var(--yellow-primary);
-        }
-        
         /* Hero Section */
         .hero {
             background: url('img1.png'); /* Replace with your actual image path */
@@ -794,7 +722,7 @@
         }
         
         .perspectives-container {
-            max-width: 1200px;
+            max-width: 1900px;
             margin: 0 auto;
             padding: 0 20px;
             position: relative;
@@ -1057,153 +985,531 @@
         
         
         /* Mission Section */
-        .mission {
+        .mission-vision {
             background-color: var(--yellow-primary);
-            padding: 40px 0;
-            text-align: center;
+            position: relative;
+            padding: 0;
+            margin: 60px 0;
+            overflow: hidden;
         }
         
-        .mission-container {
+        .mission-vision-container {
+            position: relative;
+        }
+        
+        .wave-divider, 
+        .wave-divider-bottom {
+            display: block;
+            width: 100%;
+            height: 100px;
+            position: relative;
+        }
+        
+        .wave-divider svg, 
+        .wave-divider-bottom svg {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+        
+        .mission-vision-content {
+            padding: 40px 20px 60px;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
         }
         
-        .mission h3 {
-            font-size: 24px;
-            margin-bottom: 20px;
+        .section-heading {
+            text-align: center;
+            margin-bottom: 50px;
             position: relative;
-            display: inline-block;
         }
         
-        .mission h3:before, .mission h3:after {
+        .section-heading h2 {
+            font-size: 36px;
+            color: var(--green-primary);
+            margin-bottom: 15px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-shadow: 1px 1px 1px rgba(0,0,0,0.1);
+        }
+        
+        .section-heading-underline {
+            width: 100px;
+            height: 4px;
+            background: var(--green-primary);
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .section-heading-underline::before, 
+        .section-heading-underline::after {
             content: "";
             position: absolute;
             top: 50%;
-            width: 100px;
-            height: 1px;
-            background-color: #333;
+            width: 50px;
+            height: 2px;
+            background: rgba(0,104,55,0.3);
+            transform: translateY(-50%);
         }
         
-        .mission h3:before {
-            right: 100%;
-            margin-right: 20px;
+        .section-heading-underline::before {
+            left: -70px;
         }
         
-        .mission h3:after {
-            left: 100%;
-            margin-left: 20px;
+        .section-heading-underline::after {
+            right: -70px;
         }
         
-        .mission p {
-            color: #333;
-            line-height: 1.6;
-            max-width: 800px;
-            margin: 0 auto;
+        .mission-vision-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
         }
         
+        .mission-card, 
+        .vision-card, 
+        .values-card {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .mission-card:hover, 
+        .vision-card:hover, 
+        .values-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .mission-card::after, 
+        .vision-card::after, 
+        .values-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--green-primary);
+        }
+        
+        .card-icon {
+            width: 70px;
+            height: 70px;
+            background-color: var(--green-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            color: white;
+            font-size: 28px;
+            box-shadow: 0 5px 15px rgba(0, 104, 55, 0.3);
+        }
+        
+        .mission-card h3, 
+        .vision-card h3, 
+        .values-card h3 {
+            color: var(--green-primary);
+            font-size: 24px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        .mission-card p, 
+        .vision-card p {
+            color: #444;
+            line-height: 1.7;
+            font-size: 16px;
+        }
+        
+        .values-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            text-align: left;
+        }
+        
+        .values-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            color: #444;
+            font-size: 16px;
+        }
+        
+        .values-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .values-list li span {
+            font-weight: 600;
+            color: var(--green-primary);
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 992px) {
+            .mission-vision-grid {
+                grid-template-columns: 1fr;
+                max-width: 600px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            
+            .section-heading h2 {
+                font-size: 32px;
+            }
+            
+            .wave-divider, 
+            .wave-divider-bottom {
+                height: 60px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .section-heading-underline::before, 
+            .section-heading-underline::after {
+                width: 30px;
+            }
+            
+            .section-heading-underline::before {
+                left: -50px;
+            }
+            
+            .section-heading-underline::after {
+                right: -50px;
+            }
+            
+            .card-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 24px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .section-heading h2 {
+                font-size: 28px;
+            }
+            
+            .section-heading-underline::before, 
+            .section-heading-underline::after {
+                display: none;
+            }
+            
+            .mission-card, 
+            .vision-card, 
+            .values-card {
+                padding: 25px 20px;
+            }
+        }
         /* Accreditations */
        /* Accreditations */
-.accreditations {
-    background-color: #065400; /* Yellow background as in your image */
-    padding: 40px 0;
-    color: rgb(211, 194, 0);
-}
-
-.accreditations-container {
-    max-width: 1900px;
-    margin: 0 auto;
-    padding: 0 20px;
-    text-align: center;
-}
-
-.accreditations h2 {
-    font-size: 50px;
-    margin-bottom: 40px;
-    position: relative;
-    display: inline-block;
-}
-
-.accreditations h2:before, .accreditations h2:after {
-    content: "";
-    position: absolute;
-    top: 50%;
-    width: 300px;
-    height: 1px;
-    background-color: #e1ff00;
-}
-
-.accreditations h2:before {
-    right: 100%;
-    margin-right: 20px;
-}
-
-.accreditations h2:after {
-    left: 100%;
-    margin-left: 20px;
-}
-
-.accreditation-boxes {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    margin-bottom: 40px;
-}
-
-.accreditation-box {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 0 10px 20px;
-}
-
-.accreditation-logo {
-    background-color: rgb(255, 247, 0);
-    width: 250px;
-    height: 150px;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 10px;
-    margin-bottom: 10px;
-}
-
-.accreditation-logo img {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain;
-}
-
-.accreditation-name {
-    font-weight: bold;
-    font-size: 18px;
-    margin-top: 5px;
-}
-
-/* Responsive adjustments */
-@media (max-width: 1200px) {
-    .accreditations h2:before, .accreditations h2:after {
-        width: 150px;
-    }
-}
-
-@media (max-width: 768px) {
-    .accreditations h2:before, .accreditations h2:after {
-        width: 50px;
-    }
-}
-
-@media (max-width: 480px) {
-    .accreditations h2:before, .accreditations h2:after {
-        display: none;
+       .accreditations {
+        background-color: #065400;
+        padding: 60px 0;
+        color: rgb(211, 194, 0);
+        position: relative;
     }
     
+    .accent-divider {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 10px;
+    }
+    
+    .accent-divider.bottom {
+        top: auto;
+        bottom: 0;
+    }
+    
+    .accent-divider svg {
+        width: 100%;
+        height: 100%;
+    }
+    
+    .accreditations-container {
+        max-width: 1600px;
+        margin: 0 auto;
+        padding: 0 20px;
+        text-align: center;
+    }
+    
+    .section-header {
+        margin-bottom: 50px;
+    }
+    
+    .accreditations h2 {
+        font-size: 50px;
+        margin-bottom: 10px;
+        position: relative;
+        display: inline-block;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    }
+    
+    .accreditations h2:before, .accreditations h2:after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        width: 100px;
+        height: 3px;
+        background-color: #e1ff00;
+        box-shadow: 0 0 10px rgba(225, 255, 0, 0.3);
+    }
+    
+    .accreditations h2:before {
+        right: 100%;
+        margin-right: 30px;
+    }
+    
+    .accreditations h2:after {
+        left: 100%;
+        margin-left: 30px;
+    }
+    
+    .section-subtitle {
+        font-size: 18px;
+        color: rgba(255, 255, 255, 0.8);
+        margin-top: 15px;
+        font-style: italic;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    /* Updated accreditation boxes to display in a single row */
     .accreditation-boxes {
+        display: flex;
+        justify-content: center;
+        flex-wrap: nowrap; /* Changed to nowrap to keep in a single row */
+        gap: 20px; /* Reduced gap to fit all 5 in one row */
+        margin-bottom: 50px;
+        overflow-x: auto; /* Allow horizontal scrolling on small screens */
+        padding: 10px 0; /* Add padding for better appearance when scrolling */
+    }
+    
+    .accreditation-box {
+        display: flex;
         flex-direction: column;
         align-items: center;
+        margin: 0;
+        /* Removed width constraint */
+        transition: transform 0.3s ease;
+        flex: 0 0 auto; /* Prevent shrinking */
     }
-}
+    
+    .accreditation-box:hover {
+        transform: translateY(-10px);
+    }
+    
+    /* Increased size of logo containers */
+    .accreditation-logo {
+        background-color: rgb(255, 247, 0);
+        width: 290px; /* Increased from 200px */
+        height: 220px; /* Increased from 130px */
+        border-radius: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: none;
+        margin-bottom: 15px;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s ease;
+    }
+    
+    .accreditation-box:hover .accreditation-logo {
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+    }
+    
+    .accreditation-logo img {
+        max-width: 90%;
+        max-height: 90%;
+        object-fit: contain;
+        transition: transform 0.3s ease;
+    }
+    
+    .accreditation-box:hover .accreditation-logo img {
+        transform: scale(1.1);
+    }
+    
+    /* Logo overlay for additional information */
+    .logo-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 104, 55, 0.9);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        border-radius: 15px;
+    }
+    
+    .accreditation-box:hover .logo-overlay {
+        opacity: 1;
+    }
+    
+    .overlay-content {
+        color: white;
+        text-align: center;
+        padding: 15px;
+    }
+    
+    .view-details {
+        display: inline-block;
+        font-weight: bold;
+        font-size: 18px; /* Increased from 16px */
+        padding: 8px 15px; /* Increased padding */
+        border: 2px solid white;
+        border-radius: 20px;
+    }
+    
+    .accreditation-info {
+        text-align: center;
+    }
+    
+    .accreditation-name {
+        font-weight: bold;
+        font-size: 22px; /* Increased from 20px */
+        margin-bottom: 5px;
+        color: #ffcc00;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    }
+    
+    /* Note section at bottom */
+    .accreditation-note {
+        max-width: 800px;
+        margin: 20px auto 0;
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+        padding: 20px;
+        display: flex;
+        align-items: center;
+        text-align: left;
+    }
+    
+    .note-icon {
+        flex: 0 0 60px;
+        height: 60px;
+        background-color: #ffcc00;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-right: 20px;
+        color: #065400;
+        font-size: 24px;
+    }
+    
+    .accreditation-note p {
+        margin: 0;
+        font-size: 16px;
+        color: rgba(255, 255, 255, 0.9);
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 1500px) {
+        .accreditation-logo {
+            width: 240px;
+            height: 150px;
+        }
+        
+        .accreditation-name {
+            font-size: 20px;
+        }
+    }
+    
+    @media (max-width: 1200px) {
+        .accreditations h2 {
+            font-size: 42px;
+        }
+        
+        .accreditations h2:before, .accreditations h2:after {
+            width: 70px;
+        }
+        
+        .accreditation-logo {
+            width: 200px;
+            height: 130px;
+        }
+    }
+    
+    @media (max-width: 992px) {
+        .accreditation-boxes {
+            flex-wrap: wrap; /* Allow wrapping on medium screens */
+            justify-content: center;
+        }
+        
+        .accreditation-box {
+            flex: 0 0 40%; /* Two per row on medium screens */
+            margin-bottom: 20px;
+        }
+    }
+    
+    @media (max-width: 768px) {
+        .accreditations {
+            padding: 40px 0;
+        }
+        
+        .accreditations h2 {
+            font-size: 36px;
+        }
+        
+        .accreditations h2:before, .accreditations h2:after {
+            width: 40px;
+        }
+        
+        .section-subtitle {
+            font-size: 16px;
+        }
+        
+        .accreditation-note {
+            flex-direction: column;
+            text-align: center;
+        }
+        
+        .note-icon {
+            margin-right: 0;
+            margin-bottom: 15px;
+        }
+        
+        .accreditation-box {
+            flex: 0 0 45%; /* Still two per row but a bit larger */
+        }
+    }
+    
+    @media (max-width: 576px) {
+        .accreditations h2 {
+            font-size: 32px;
+        }
+        
+        .accreditations h2:before, .accreditations h2:after {
+            display: none;
+        }
+        
+        .accreditation-boxes {
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .accreditation-box {
+            flex: 0 0 100%;
+            max-width: 280px;
+        }
+    }
         
         /* Footer Styles */
         .footer {
@@ -1214,7 +1520,7 @@
         .footer-main {
             background-color: var(--green-primary);
             color: white;
-            padding: 40px 0;
+            padding: 50px 0;
             position: relative;
         }
         
@@ -1237,20 +1543,48 @@
         .footer-heading {
             color: var(--yellow-primary);
             font-size: 1.3rem;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             font-weight: bold;
             text-transform: uppercase;
             border-bottom: 2px solid var(--yellow-primary);
-            padding-bottom: 5px;
+            padding-bottom: 8px;
             display: inline-block;
         }
         
         .footer-text {
-            line-height: 1.6;
+            line-height: 1.7;
             font-size: 15px;
             max-width: 90%;
+            margin-bottom: 20px;
         }
         
+        /* Social Media Links */
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+        }
+        
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            font-size: 18px;
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            background-color: var(--yellow-primary);
+            color: var(--green-primary);
+            transform: translateY(-3px);
+        }
+        
+        /* Contact Section */
         .footer-contact {
             flex: 1;
             min-width: 300px;
@@ -1263,48 +1597,51 @@
         }
         
         .contact-list li {
-            margin-bottom: 10px;
+            margin-bottom: 15px;
             display: flex;
             align-items: center;
         }
         
         .contact-icon {
-            display: inline-block;
-            width: 20px;
-            margin-right: 10px;
-            text-align: center;
-        }
-        
-        .footer-logo {
-            flex: 1;
-            min-width: 300px;
-            display: flex;
-            justify-content: center;
-        }
-        
-        .logo-box {
-            background-color: #f8f8f8;
-            border-radius: 8px;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
+            display: inline-flex;
             align-items: center;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            justify-content: center;
+            width: 30px;
+            height: 30px;
+            margin-right: 15px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--yellow-primary);
         }
         
-        .logo-box img {
-            max-width: 180px;
-            margin-bottom: 15px;
+        .contact-link {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
         }
         
-        .logo-motto {
-            text-align: center;
-            color: var(--green-primary);
-            font-weight: bold;
-            font-size: 16px;
+        .contact-link:hover {
+            color: var(--yellow-primary);
+            text-decoration: underline;
         }
         
+        /* Map Section - Replaces Logo Box */
+        .footer-map {
+            flex: 1;
+            min-width: 450px;
+            min-height: 100px;
+        }
+        
+        .map-container {
+            width: 100%;
+            height: 350px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            padding-right: none;
+        }
+        
+        /* Copyright Section */
         .footer-copyright {
             background-color: var(--dark);
             color: white;
@@ -1334,6 +1671,58 @@
             font-size: 14px;
             text-align: center;
             flex: 1;
+            line-height: 1.6;
+        }
+        
+        /* Responsive Adjustments */
+        @media (max-width: 992px) {
+            .footer-container {
+                padding: 0 20px;
+            }
+            
+            .footer-info, .footer-contact, .footer-map {
+                flex: 100%;
+                min-width: 100%;
+                padding-right: 0;
+            }
+            
+            .footer-info {
+                margin-bottom: 30px;
+            }
+            
+            .footer-contact {
+                margin-bottom: 30px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .footer-main {
+                padding: 40px 0;
+            }
+            
+            .social-links {
+                justify-content: center;
+            }
+            
+            .copyright-container {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .footer-heading {
+                font-size: 1.1rem;
+            }
+            
+            .contact-list li {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .contact-icon {
+                margin-bottom: 5px;
+            }
         }
         
         /* Responsive Styles */
@@ -1509,7 +1898,7 @@
         }
         
         .timeline-container {
-            max-width: 1200px;
+            max-width: 1500px;
             margin: 0 auto;
             padding: 0 20px;
         }
@@ -1531,7 +1920,7 @@
             bottom: -10px;
             left: 0;
             width: 100%;
-            height: 3px;
+            height: 5px;
             background-color: var(--yellow-primary);
         }
         
@@ -1630,7 +2019,7 @@
         
         .timeline-image {
             width: 100%;
-            height: 280px;
+            height: 490px;
             overflow: hidden;
             position: relative;
         }
@@ -1821,19 +2210,60 @@
             padding-top: none;
         }
         
+/* Base styles for arrows */
         .arrow-green {
             height: 100px;
-            width: 1250px;
+            width: 1500px;
             background-color: #006837;
             clip-path: polygon(0 0, 95% 0, 100% 50%, 95% 100%, 0 100%);
-            
+            transform: translateX(-100%);
+            opacity: 0;
+            transition: transform 1.2s ease-out, opacity 1.2s ease-out;
         }
-        
+
         .arrow-yellow {
             height: 100px;
             width: 900px;
             background-color: #ffcc00;
             clip-path: polygon(5% 0, 100% 0, 100% 100%, 5% 100%, 0 50%);
+            transform: translateX(100%);
+            opacity: 0;
+            transition: transform 1.2s ease-out, opacity 1.2s ease-out;
+            transition-delay: 0.3s;
+        }
+
+        /* Animation classes that will be toggled */
+        .arrow-green.animate {
+            transform: translateX(0);
+            opacity: 1;
+        }
+
+        .arrow-yellow.animate {
+            transform: translateX(0);
+            opacity: 1;
+        }
+        
+        /* Define the animations */
+        @keyframes slideInLeft {
+            0% {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+            100% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        @keyframes slideInRight {
+            0% {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            100% {
+                transform: translateX(0);
+                opacity: 1;
+            }
         }
     </style>
 </head>
@@ -1901,7 +2331,7 @@
         </div>
     </header>
     
-    <!-- Updated Mobile Navigation -->
+    <!-- Mobile Navigation -->
     <div class="mobile-nav" id="mobileNav">
         <div class="mobile-nav-header">
             <div class="logo-container">
@@ -1972,14 +2402,12 @@
     
     <!-- Stats Boxes -->
 <br><br>
-    <div class="top-arrows">
-        <div class="arrow-green"></div>
-
-    </div>
-    <div class="top-arrows2">
-
-        <div class="arrow-yellow"></div>
-    </div>
+<div class="top-arrows" id="arrowSection">
+    <div class="arrow-green"></div>
+</div>
+<div class="top-arrows2">
+    <div class="arrow-yellow"></div>
+</div>
     <!-- Welcome BSN Section -->
     <section class="welcome">
         <div class="welcome-image">
@@ -2179,52 +2607,165 @@
 </section>
     
     <!-- Mission Section -->
-    <section class="mission">
-        <div class="mission-container">
-            <h3>OUR MISSION</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse sollicitudin enim vitae lacus gravida maximus. Sed luctus euismod elit, at accumsan nulla feugiat vel. Pellentesque ac interdum ipsum. Sed vitae tristique sem. Morbi ut ipsum in nibh gravida semper. Fusce a tincidunt turpis, id sagittis magna. Aliquam maximus tincidunt dolor.</p>
+    <section class="mission-vision">
+        <div class="mission-vision-container">
+            <!-- Visual divider at the top -->
+            <div class="wave-divider">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 100" preserveAspectRatio="none">
+                    <path fill="#006837" fill-opacity="1" d="M0,64L48,69.3C96,75,192,85,288,80C384,75,480,53,576,42.7C672,32,768,32,864,42.7C960,53,1056,75,1152,74.7C1248,75,1344,53,1392,42.7L1440,32L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"></path>
+                </svg>
+            </div>
+        
+            <div class="mission-vision-content">
+                <div class="section-heading">
+                    <h2>OUR PHILOSOPHY</h2>
+                    <div class="section-heading-underline"></div>
+                </div>
+                
+                <div class="mission-vision-grid">
+                    <div class="mission-card">
+                        <div class="card-icon">
+                            <i class="fas fa-bullseye"></i>
+                        </div>
+                        <h3>Our Mission</h3>
+                        <p>To develop competent, compassionate, and committed nurses through excellent, innovative education rooted in Paulinian values, serving humanity with utmost care and dedication.</p>
+                    </div>
+                    
+                    <div class="vision-card">
+                        <div class="card-icon">
+                            <i class="fas fa-eye"></i>
+                        </div>
+                        <h3>Our Vision</h3>
+                        <p>To be a leading center of nursing excellence in the Philippines, forming globally competitive nurse professionals who embody Christian values and are dedicated to improving health outcomes.</p>
+                    </div>
+                    
+                    <div class="values-card">
+                        <div class="card-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <h3>Our Core Values</h3>
+                        <ul class="values-list">
+                            <li><span>Compassion</span> in patient care</li>
+                            <li><span>Excellence</span> in nursing practice</li>
+                            <li><span>Integrity</span> in all interactions</li>
+                            <li><span>Service</span> to the community</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Visual divider at the bottom -->
+            <div class="wave-divider-bottom">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 100" preserveAspectRatio="none">
+                    <path fill="#006837" fill-opacity="1" d="M0,32L48,42.7C96,53,192,75,288,74.7C384,75,480,53,576,53.3C672,53,768,75,864,80C960,85,1056,75,1152,64C1248,53,1344,43,1392,37.3L1440,32L1440,100L1392,100C1344,100,1248,100,1152,100C1056,100,960,100,864,100C768,100,672,100,576,100C480,100,384,100,288,100C192,100,96,100,48,100L0,100Z"></path>
+                </svg>
+            </div>
         </div>
     </section>
     
     <!-- Accreditations -->
 <!-- Accreditations -->
 <section class="accreditations">
+    <div class="accent-divider">
+        <svg viewBox="0 0 100 10" preserveAspectRatio="none">
+            <path d="M0,2 L100,2 L100,0 L0,0 Z" fill="#ffcc00"></path>
+        </svg>
+    </div>
+    
     <div class="accreditations-container">
-        <h2>ACCREDITATIONS</h2>
+        <div class="section-header">
+            <h2>ACCREDITATIONS</h2>
+            <p class="section-subtitle">Recognition of Our Excellence in Nursing Education</p>
+        </div>
+        
         <div class="accreditation-boxes">
             <div class="accreditation-box">
                 <div class="accreditation-logo">
                     <img src="ISO.png" alt="ISO Logo">
+                    <div class="logo-overlay">
+                        <div class="overlay-content">
+                            <span class="view-details">ISO 9001:2015</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="accreditation-name">ISO</div>
+                <div class="accreditation-info">
+                    <div class="accreditation-name">ISO</div>
+                </div>
             </div>
+            
             <div class="accreditation-box">
                 <div class="accreditation-logo">
                     <img src="PACUCOA.png" alt="PACUCOA Logo">
+                    <div class="logo-overlay">
+                        <div class="overlay-content">
+                            <span class="view-details">Level IV Accreditation</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="accreditation-name">PACUCOA</div>
+                <div class="accreditation-info">
+                    <div class="accreditation-name">PACUCOA</div>
+                </div>
             </div>
+            
             <div class="accreditation-box">
                 <div class="accreditation-logo">
                     <img src="AASBI.png" alt="AASBI Logo">
+                    <div class="logo-overlay">
+                        <div class="overlay-content">
+                            <span class="view-details">Fully Accredited</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="accreditation-name">AASBI</div>
+                <div class="accreditation-info">
+                    <div class="accreditation-name">AASBI</div>
+                </div>
             </div>
+            
             <div class="accreditation-box">
                 <div class="accreditation-logo">
                     <img src="PAASCU.png" alt="PAASCU Logo">
+                    <div class="logo-overlay">
+                        <div class="overlay-content">
+                            <span class="view-details">Level III Accreditation</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="accreditation-name">PAASCU</div>
+                <div class="accreditation-info">
+                    <div class="accreditation-name">PAASCU</div>
+                </div>
             </div>
+            
             <div class="accreditation-box">
                 <div class="accreditation-logo">
                     <img src="AAOU-e1722246699509.png" alt="AAOU Logo">
+                    <div class="logo-overlay">
+                        <div class="overlay-content">
+                            <span class="view-details">Full Membership</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="accreditation-name">AAOU</div>
+                <div class="accreditation-info">
+                    <div class="accreditation-name">AAOU</div>
+                </div>
             </div>
         </div>
+        
+        <div class="accreditation-note">
+            <div class="note-icon">
+                <i class="fas fa-award"></i>
+            </div>
+            <p>Our BSN program meets the highest standards of quality education, as recognized by these prestigious accrediting bodies both nationally and internationally.</p>
+        </div>
+    </div>
+    
+    <div class="accent-divider bottom">
+        <svg viewBox="0 0 100 10" preserveAspectRatio="none">
+            <path d="M0,0 L100,0 L100,2 L0,2 Z" fill="#ffcc00"></path>
+        </svg>
     </div>
 </section>
+
+
     <!-- Footer -->
     <footer class="footer">
         <div class="footer-main">
@@ -2234,30 +2775,71 @@
                     <p class="footer-text">
                         St. Paul University Philippines is located in Tuguegarao City, Cagayan, Philippines. Founded in 1907 by the Sisters of St. Paul of Chartres, it became the first University in the Cagayan Valley Region in 1982. It offers basic, tertiary, professional, and graduate education.
                     </p>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/spup.edu.ph/" target="_blank" class="social-link">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://twitter.com/SPUPOfficial" target="_blank" class="social-link">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="https://www.instagram.com/spupofficial/" target="_blank" class="social-link">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://www.youtube.com/channel/UCOz_njHbpFofVyDr3XZ7_Kw" target="_blank" class="social-link">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
                 </div>
                 
                 <div class="footer-contact">
                     <h3 class="footer-heading">Contact Details</h3>
                     <ul class="contact-list">
                         <li>
-                            <span class="contact-icon">📞</span>
+                            <span class="contact-icon">
+                                <i class="fas fa-phone-alt"></i>
+                            </span>
                             <span>396-1987 to 396-1994</span>
                         </li>
                         <li>
-                            <span class="contact-icon">📧</span>
-                            <span>spupadmin@spup.edu.ph</span>
+                            <span class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </span>
+                            <a href="mailto:spupadmin@spup.edu.ph" class="contact-link">spupadmin@spup.edu.ph</a>
                         </li>
                         <li>
-                            <span class="contact-icon">📍</span>
+                            <span class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </span>
                             <span>Tuguegarao City, Cagayan 3500</span>
+                        </li>
+                        <li>
+                            <span class="contact-icon">
+                                <i class="fas fa-globe"></i>
+                            </span>
+                            <a href="https://www.spup.edu.ph" target="_blank" class="contact-link">www.spup.edu.ph</a>
+                        </li>
+                        <li>
+                            <span class="contact-icon">
+                                <i class="fas fa-clock"></i>
+                            </span>
+                            <span>Mon - Fri: 8:00AM - 5:00PM</span>
                         </li>
                     </ul>
                 </div>
                 
-                <div class="footer-logo">
-                    <div class="logo-box">
-                        <img src="/api/placeholder/180/60" alt="SPUP Logo">
-                        <div class="logo-motto">Excellence and Leadership in Education</div>
+                <div class="footer-map">
+                    <h3 class="footer-heading">Our Location</h3>
+                    <div class="map-container">
+                        <!-- Google Maps iframe - Replace with actual coordinates for SPUP -->
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3802.6977707354163!2d121.72063717494031!3d17.61708088330982!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3385842956913457%3A0xa9611fb6c5575b2b!2sSt.%20Paul%20University%20Philippines!5e0!3m2!1sen!2sph!4v1741888720254!5m2!1sen!2sph" 
+                            width="100%" 
+                            height="350" 
+                            style="border:0; border-radius: 8px;" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
                     </div>
                 </div>
             </div>
@@ -2275,6 +2857,7 @@
             </div>
         </div>
     </footer>
+    
     
     <!-- JavaScript for Mobile Navigation -->
     <script>
@@ -2692,5 +3275,33 @@
             });
         });
         </script>
+        <script>document.addEventListener('DOMContentLoaded', function() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    // Get the arrows within this section
+                    const greenArrow = document.querySelector('.arrow-green');
+                    const yellowArrow = document.querySelector('.arrow-yellow');
+                    
+                    if (entry.isIntersecting) {
+                        // When section is visible, animate arrows in
+                        greenArrow.classList.add('animate');
+                        yellowArrow.classList.add('animate');
+                    } else {
+                        // When section is not visible, reset animation
+                        greenArrow.classList.remove('animate');
+                        yellowArrow.classList.remove('animate');
+                    }
+                });
+            }, {
+                // Trigger when at least 10% of the element is visible
+                threshold: 0.1
+            });
+            
+            // Observe the arrow section
+            const arrowSection = document.getElementById('arrowSection');
+            if (arrowSection) {
+                observer.observe(arrowSection);
+            }
+        });</script>
 </body>
 </html>

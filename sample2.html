@@ -3,43 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>St. Paul University Philippines - Nursing Portal</title>
+    <title>SPUP Mega Dropdown Preview</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Montserrat', 'Arial', sans-serif;
+        /* Base styles */
+        :root {
+            --green-primary: #006837;
+            --green-dark: #004d29;
+            --yellow-primary: #ffcc00;
+            --white: #FFFFFF;
         }
         
         body {
-            background-color: #f8f9fa;
-            color: #333;
-            line-height: 1.6;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
         }
         
+        /* Header styles */
         .header {
-            background-color: #006837;
+            background-color: var(--green-primary);
             color: white;
-            padding: 0;
             position: sticky;
             top: 0;
             z-index: 100;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        
-        .header-top {
-            background-color: #004d29;
-            padding: 8px 40px;
-            display: flex;
-            justify-content: flex-end;
-        }
-        
-        .header-top a {
-            color: white;
-            text-decoration: none;
-            font-size: 0.85rem;
-            margin-left: 20px;
         }
         
         .header-main {
@@ -47,6 +36,8 @@
             justify-content: space-between;
             align-items: center;
             padding: 15px 40px;
+            max-width: 1500px;
+            margin: 0 auto;
         }
         
         .logo-container {
@@ -57,741 +48,281 @@
         .logo-img {
             height: 60px;
             margin-right: 15px;
+            display: block;
         }
         
-        .logo-text {
-            color: #ffcc00;
-            font-size: 1.2rem;
-            font-weight: bold;
-            line-height: 1.2;
-        }
-        
-        .nav {
+        /* Navigation styles */
+        .nav-menu {
             display: flex;
-            gap: 30px;
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            gap: 25px;
         }
         
-        .nav a {
+        .nav-item {
+            position: relative;
+        }
+        
+        .nav-link {
             color: white;
             text-decoration: none;
             font-weight: 600;
             font-size: 0.95rem;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            transition: color 0.3s;
-            padding: 5px 0;
+            transition: all 0.3s ease;
+            padding: 15px 0;
             position: relative;
-        }
-        
-        .nav a:hover {
-            color: #ffcc00;
-        }
-        
-        .nav a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: #ffcc00;
-            transition: width 0.3s;
-        }
-        
-        .nav a:hover::after {
-            width: 100%;
-        }
-        
-        /* Hero Section */
-        .hero {
-            position: relative;
-            height: 600px;
-            overflow: hidden;
-        }
-        
-        .hero-image {
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
             display: flex;
-            justify-content: center;
             align-items: center;
-            color: white;
-            position: relative;
         }
         
-        .hero-image::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url('/api/placeholder/800/500');
-            background-size: cover;
-            background-position: center;
-            opacity: 0.6;
-            z-index: -1;
+        .nav-link i {
+            font-size: 0.7rem;
+            margin-left: 5px;
         }
         
-        .hero-content {
-            text-align: center;
-            padding: 20px;
-            z-index: 2;
-            max-width: 800px;
+        .nav-link:hover {
+            color: var(--yellow-primary);
         }
         
-        .hero-title {
-            font-size: 4.5rem;
-            margin-bottom: 10px;
-            color: white;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-        }
-        
-        .hero-subtitle {
-            font-size: 2.5rem;
-            margin-bottom: 30px;
-            color: #ffcc00;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
-        }
-        
-        .hero-description {
-            color: white;
-            font-size: 1.3rem;
-            margin-bottom: 40px;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
-        }
-        
-        .play-button {
-            width: 80px;
-            height: 80px;
-            background-color: rgba(255, 204, 0, 0.8);
-            border-radius: 50%;
+        /* Dropdown toggle styling */
+        .nav-link.dropdown-toggle {
             display: flex;
-            justify-content: center;
             align-items: center;
-            margin: 30px auto;
-            cursor: pointer;
-            transition: transform 0.3s, background-color 0.3s;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-        }
-        
-        .play-button:hover {
-            transform: scale(1.1);
-            background-color: #ffcc00;
-        }
-        
-        .play-icon {
-            width: 0;
-            height: 0;
-            border-top: 20px solid transparent;
-            border-left: 30px solid white;
-            border-bottom: 20px solid transparent;
-            margin-left: 8px;
-        }
-        
-        .stats {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin-top: -70px;
-            position: relative;
-            z-index: 3;
-            padding: 0 20px;
-        }
-        
-        .stat-box {
-            width: 200px;
-            height: 140px;
-            background-color: white;
-            border-radius: 10px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
-            text-align: center;
-            padding: 20px;
-            transition: transform 0.3s;
-        }
-        
-        .stat-box:hover {
-            transform: translateY(-5px);
-        }
-        
-        .stat-box h3 {
-            font-size: 0.9rem;
-            margin-bottom: 15px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        
-        .stat-box p {
-            font-weight: bold;
-        }
-        
-        .year-2022 {
-            background-color: #006837;
-            color: white;
-        }
-        
-        .year-2023 {
-            background-color: #2196F3;
-            color: white;
-        }
-        
-        .year-2024 {
-            background-color: #ffcc00;
-            color: #333;
-        }
-        
-        /* Course Info Section */
-        .content-container {
-            max-width: 1200px;
-            margin: 80px auto 40px;
-            padding: 0 40px;
-            position: relative;
-        }
-        
-        .section-divider {
-            position: relative;
-            height: 4px;
-            background-color: #e1e1e1;
-            margin: 60px 0;
-            max-width: 1200px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        
-        .section-divider::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            height: 4px;
-            width: 100px;
-            background-color: #006837;
-        }
-        
-        .main-content {
-            display: flex;
             justify-content: space-between;
-            background-color: white;
-            border-radius: 12px;
-            padding: 50px;
-            margin-bottom: 60px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            padding-right: 5px;
         }
         
-        .degree-info {
-            flex: 1;
-            padding-right: 60px;
+        .nav-link.dropdown-toggle i {
+            font-size: 0.8rem;
+            margin-left: 5px;
+            transition: transform 0.3s ease;
         }
         
-        .degree-badge {
-            display: inline-block;
-            background-color: #e8f5e9;
-            padding: 8px 20px;
-            border-radius: 30px;
-            margin-bottom: 20px;
-        }
-        
-        .degree-badge span {
-            color: #006837;
-            font-weight: bold;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        
-        .degree-title {
-            color: #006837;
-            font-size: 2.2rem;
-            font-weight: 800;
-            margin-bottom: 25px;
-            line-height: 1.2;
-        }
-        
-        .course-button {
-            display: inline-block;
-            background-color: #006837;
-            color: white;
-            padding: 12px 30px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-size: 1rem;
-            font-weight: 600;
-            margin-top: 30px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: background-color 0.3s, transform 0.3s;
-            box-shadow: 0 4px 10px rgba(0,104,55,0.3);
-        }
-        
-        .course-button:hover {
-            background-color: #004d29;
-            transform: translateY(-3px);
-        }
-        
-        .course-details {
-            flex: 1;
-            color: #555;
-            font-size: 1rem;
-            line-height: 1.8;
-        }
-        
-        /* Student Perspectives Section */
-        .section-header {
-            background-color: #006837;
-            color: white;
-            padding: 20px 0;
-            text-align: center;
-            font-size: 1.6rem;
-            font-weight: 700;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin-bottom: 0;
-            position: relative;
-        }
-        
-        .section-header::after {
-            content: '';
+        /* Mega dropdown style */
+        .dropdown-menu {
             position: absolute;
-            bottom: -10px;
             left: 50%;
             transform: translateX(-50%);
-            width: 60px;
-            height: 4px;
-            background-color: #ffcc00;
-        }
-        
-        .perspective-wrapper {
-            background-color: #006837;
-            padding: 50px 40px;
-            margin-bottom: 60px;
-        }
-        
-        .student-videos {
-            display: flex;
-            justify-content: space-between;
-            gap: 30px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .video-card {
-            flex: 1;
-            position: relative;
-            background-color: #f9f9f9;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-            transition: transform 0.3s;
-        }
-        
-        .video-card:hover {
-            transform: translateY(-10px);
-        }
-        
-        .video-thumbnail {
-            width: 100%;
-            height: 220px;
-            background-size: cover;
-            background-position: center;
-        }
-        
-        .video-play {
-            position: absolute;
-            bottom: 15px;
-            left: 15px;
-            width: 50px;
-            height: 50px;
-            background-color: #ffcc00;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            transition: transform 0.3s, background-color 0.3s;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-        }
-        
-        .video-play:hover {
-            transform: scale(1.1);
-            background-color: #e6b800;
-        }
-        
-        .video-play-icon {
-            width: 0;
-            height: 0;
-            border-top: 10px solid transparent;
-            border-left: 15px solid white;
-            border-bottom: 10px solid transparent;
-            margin-left: 4px;
-        }
-        
-        .apply-section {
-            text-align: center;
-            padding: 80px 0;
-            background-color: #f0f5f0;
-            margin-bottom: 60px;
-        }
-        
-        .apply-heading {
-            font-size: 2.5rem;
-            color: #006837;
-            margin-bottom: 20px;
-            font-weight: 800;
-        }
-        
-        .apply-subheading {
-            font-size: 1.2rem;
-            color: #555;
-            max-width: 700px;
-            margin: 0 auto 40px;
-        }
-        
-        .apply-button {
-            display: inline-block;
-            background-color: #ffcc00;
-            color: #333;
-            padding: 15px 40px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-size: 1.1rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: background-color 0.3s, transform 0.3s;
-            box-shadow: 0 4px 10px rgba(255,204,0,0.3);
-        }
-        
-        .apply-button:hover {
-            background-color: #e6b800;
-            transform: translateY(-3px);
-        }
-        
-        .footer {
-            background-color: #004d29;
-            color: #fff;
-            padding: 20px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .page-indicator {
-            display: flex;
-            align-items: center;
-            color: #ccc;
-            font-size: 0.9rem;
-        }
-        
-        .slider {
-            width: 120px;
-            height: 6px;
-            background-color: rgba(255,255,255,0.2);
-            border-radius: 3px;
-            margin: 0 15px;
-            position: relative;
-        }
-        
-        .slider-thumb {
-            position: absolute;
-            width: 12px;
-            height: 12px;
-            background-color: #ffcc00;
-            border-radius: 50%;
-            top: -3px;
-            left: 67%;
-        }
-        
-        .controls {
-            display: flex;
+            top: 100%;
+            background-color: white;
+            min-width: 500px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+            border-radius: 8px;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 100;
+            padding: 20px;
+            margin-top: 15px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
             gap: 15px;
         }
         
-        .control-icon {
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        /* Dropdown menu item with icon */
+        .dropdown-menu a {
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            color: #333;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: all 0.2s ease;
+            border-radius: 6px;
+        }
+        
+        .dropdown-menu a:hover {
+            background-color: rgba(0, 104, 55, 0.05);
+            color: var(--green-primary);
+        }
+        
+        /* Icon styling */
+        .dropdown-menu .menu-icon {
             width: 30px;
             height: 30px;
-            background-color: rgba(255,255,255,0.1);
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        
-        .control-icon:hover {
-            background-color: rgba(255,255,255,0.2);
-        }
-        
-        .university-logo {
+            margin-right: 15px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 40px 0;
         }
         
-        .university-logo img {
-            height: 120px;
+        .dropdown-menu .menu-icon img {
+            max-width: 100%;
+            max-height: 100%;
         }
         
-        .university-name {
-            color: #006837;
-            font-size: 2.5rem;
-            font-weight: 800;
+        /* Arrow at the top of dropdown */
+        .dropdown-menu::before {
+            content: '';
+            position: absolute;
+            top: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-bottom: 8px solid white;
+        }
+        
+        /* Demo container */
+        .demo-container {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .demo-container h1 {
             text-align: center;
+            color: var(--green-primary);
             margin-bottom: 30px;
-            letter-spacing: 1px;
-        }
-
-        .top-arrows {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 10px;
         }
         
-        .top-arrows2 {
-            display: flex;
-            justify-content: right;
-            margin-bottom: 0px;
+        /* Fixed mobile menu toggle */
+        .menu-toggle {
+            display: none;
+        }
+        
+        /* Responsive styles */
+        @media (max-width: 992px) {
+            .header-main {
+                padding: 15px 20px;
+            }
             
-        }
-        
-        .arrow-green {
-            height: 70px;
-            width: 1250px;
-            background-color: #006837;
-            clip-path: polygon(0 0, 95% 0, 100% 50%, 95% 100%, 0 100%);
+            .nav {
+                display: none;
+            }
             
+            .menu-toggle {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                width: 30px;
+                height: 21px;
+                cursor: pointer;
+            }
+            
+            .menu-toggle span {
+                display: block;
+                height: 3px;
+                width: 100%;
+                background-color: white;
+                border-radius: 3px;
+            }
         }
-        
-        .arrow-yellow {
-            height: 70px;
-            width: 600px;
-            background-color: #ffcc00;
-            clip-path: polygon(5% 0, 100% 0, 100% 100%, 5% 100%, 0 50%);
-        }
-
-        
-  
-        .contact-heading {
-            display: block; 
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #ffcc00;
-            margin-bottom: 10px; 
-            border-bottom: 2px solid #ffcc00;
-            padding-bottom: 5px;
-        }
-
-
-        .contact-details {
-            margin-top: 10px;
-            line-height: 1.6; 
-        }
-
-        .heading-text {
-            white-space: nowrap; 
-            word-spacing: 2px; 
-        }
-
-
     </style>
 </head>
 <body>
+    <!-- Header Section -->
     <header class="header">
-        <div class="header-top">
-
-        </div>
         <div class="header-main">
             <div class="logo-container">
-                <img src="SPUP-BANNER-FOOTER.png" alt="SPUP Logo" class="logo-img">
+                <img src="/api/placeholder/60/60" alt="SPUP Logo" class="logo-img">
             </div>
             <nav class="nav">
-                <a href="#">Online Offerings</a> |
-                <a href="#">Facilities</a> |
-                <a href="#">Faculty Staff</a> |
-                <a href="#">Past Passers</a> | 
-                <a href="#">Achievements</a> | 
-                <a href="#">Contact Us</a>
+                <ul class="nav-menu">
+                    <li class="nav-item"><a href="#" class="nav-link">Home</a></li>
+                    
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle">Subject Offerings <i class="fas fa-chevron-down"></i></a>
+                        <div class="dropdown-menu">
+                            <a href="#">
+                                <div class="menu-icon">
+                                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0Ij48cGF0aCBmaWxsPSJub25lIiBkPSJNMCAwaDI0djI0SDB6Ii8+PHBhdGggZD0iTTIxIDRINGEyIDIgMCAwIDAtMiAydjEzLjkxN2EuOTgzLjk4MyAwIDAgMCAxLjQyMy44OGw1LjUxOS0yLjkxN2E0LjAwMSA0LjAwMSAwIDAgMSAzLjc4MS0uMDM2bDUuODk0IDIuOTQ4QS45ODMuOTgzIDAgMCAwIDIyIDE5LjlWNmEyIDIgMCAwIDAtMS0yek0yMCA5LjhjLTIuNzMzIDEuODIyLTUuMDQxIDEuNzktNyAuOTV2OC44M2wtLjA3NS0uMDM3YTIuMDAxIDIuMDAxIDAgMCAwLTEuODg5LjAxOEw2IDIxLjU4NFYxMC44NTFDNC4xMzkgMTEuODUgMi4xODMgMTEuODIgMCA5Ljh2N2wpLjAwOC0uMDA0QTQuOTggNC45OCAwIDAgMSAyLjA0NyAxNmE0Ljk4NiA0Ljk4NiAwIDAgMSA0LjI3NC4wMzRsLjE5MS4wOTUuMzk0LjIzNS4wMy4wMThhMy4wMDEgMy4wMDEgMCAwIDAgMy4wMjcgMGwuMjQtLjE0NC4zOTQtLjIzNS4xOTItLjA5NmE0Ljk4IDQuOTggMCAwIDEgNC4yNzQtLjAzM0E0Ljk3OSA0Ljk3OSAwIDAgMSAyMiAxNi44NzlsLjAwOC4wMDRWOS44IDIweiIgZmlsbD0iIzAwNjgzNyIvPjwvc3ZnPg==" alt="Book">
+                                </div>
+                                <span>Course Description</span>
+                            </a>
+                            <a href="#">
+                                <div class="menu-icon">
+                                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0Ij48cGF0aCBmaWxsPSJub25lIiBkPSJNMCAwaDI0djI0SDB6Ii8+PHBhdGggZD0iTTcgNVY1QzMuMTQgNSAwIDguMTQgMCAxMnY1aDJWMTJDMiA5LjI0IDQuMjQgNyA3IDd2NWw3LTdMNyA1eiIgZmlsbD0iIzAwNjgzNyIvPjwvc3ZnPg==" alt="Pen">
+                                </div>
+                                <span>Program Requirements</span>
+                            </a>
+                            <a href="#">
+                                <div class="menu-icon">
+                                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0Ij48cGF0aCBmaWxsPSJub25lIiBkPSJNMCAwaDI0djI0SDB6Ii8+PHBhdGggZD0iTTEzIDlIMy41QzIuNjcyIDkgMiA4LjMyOCAyIDcuNVMyLjY3MiA2IDMuNSA2SDEzYy44MjggMCAxLjUuNjcyIDEuNSAxLjVTMTMuODI4IDkgMTMgOXpNMTMgMTVIMy41Yy0uODI4IDAtMS41LS42NzItMS41LTEuNVMyLjY3MiAxMiAzLjUgMTJIMTNjLjgyOCAwIDEuNS42NzIgMS41IDEuNVMxMy44MjggMTUgMTMgMTV6IiBmaWxsPSIjMDA2ODM3Ii8+PC9zdmc+" alt="Document">
+                                </div>
+                                <span>Course Catalog</span>
+                            </a>
+                            <a href="#">
+                                <div class="menu-icon">
+                                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0Ij48cGF0aCBmaWxsPSJub25lIiBkPSJNMCAwaDI0djI0SDB6Ii8+PHBhdGggZD0iTTQgMTl2LThhNCA0IDAgMCAxIDQtNGg4YTQgNCAwIDAgMSA0IDR2OGE0IDQgMCAwIDEtNCA0SDhhNCA0IDAgMCAxLTQtNHptNCAyaDhhMiAyIDAgMCAwIDItMnYtOGEyIDIgMCAwIDAtMi0ySDhhMiAyIDAgMCAwLTIgMnY4YTIgMiAwIDAgMCAyIDJ6bTItN2gxdjVoLTF2LTV6bTMgMGgxdjVoLTF2LTV6bTMgMGgxdjV6IiBmaWxsPSIjMDA2ODM3Ii8+PC9zdmc+" alt="Certificate">
+                                </div>
+                                <span>Degree Plans</span>
+                            </a>
+                            <a href="#">
+                                <div class="menu-icon">
+                                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0Ij48cGF0aCBmaWxsPSJub25lIiBkPSJNMCAwaDI0djI0SDB6Ii8+PHBhdGggZD0iTTIuMjEzIDI0aDkuNTc0TDEyIDE4SDJsMy4xNjQgNS44MkMyLjE2NCAyMy44MiAyLjIxMyAyNCAyLjIxMyAyNHpNMTggMi4yMTNDMTggMi4wOTcgMTcuOTAzIDIgMTcuNzg3IDJIMTYyLjIxMyAyNGg5LjU3NEwyMyAxOEgyMGwuMTY0IDUuODJDMjAuMTY0IDIzLjgyIDIwLjIxMyAyNCAyMC4yMTMgMjR6TTkgMUg3aDIzbC0yLTFoMnYyejFIOWMtNC45NzEgMC05IDQuMDI5LTkgOXM0LjAyOSA5IDkgOXM5LTQuMDI5IDktOXY0Qy0uOTcxIDE2Ljk3MSAzLjA1OCAxMiA4LjAyOSAxMk0yNSAxMGMwLTcuNzI4LTYuMjcyLTE0LTE0LTE0di4yTDcuNjc0IDguOTc0IDQuNjMyIDE0SDMuOTUyQzQgOC4zOTkgOC4zOTkgNCAxNCA0czEwIDQuNTAxIDEwIDEwYzAgNS41MjMtNC40NzcgMTAtMTAgMTB2MmM2LjYyOCAwIDEyLTUuMzcyIDEyLTEyeiIgZmlsbD0iIzAwNjgzNyIvPjwvc3ZnPg==" alt="Clock">
+                                </div>
+                                <span>Class Schedules</span>
+                            </a>
+                            <a href="#">
+                                <div class="menu-icon">
+                                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0Ij48cGF0aCBmaWxsPSJub25lIiBkPSJNMCAwaDI0djI0SDB6Ii8+PHBhdGggZD0iTTEzIDExaC0yVjdjMC0uNTUuNDUtMSAxLTFoOWMuNTUgMCAxIC40NSAxIDFzLS40NSAxLTEgMWgtOHY0em0xMC00aC0yVjVoLTJWM2g0djR6bS00IDZoMnYyaDJ2MmgtNHYtNHptMiA2aDJ2MmgtMnYtMnptLTYtMTJoMnYxMmgtMlY3em0tNi05djIwSDN2MmgxMHYySDFWMmgxNHptNC0xdjJIMXYtMmg2Vjl6IiBmaWxsPSIjMDA2ODM3Ii8+PC9zdmc+" alt="Folder">
+                                </div>
+                                <span>Academic Policies</span>
+                            </a>
+                        </div>
+                    </li>
+                    
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle">Facilities <i class="fas fa-chevron-down"></i></a>
+                        <div class="dropdown-menu">
+                            <a href="#">
+                                <div class="menu-icon">
+                                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0Ij48cGF0aCBmaWxsPSJub25lIiBkPSJNMCAwaDI0djI0SDB6Ii8+PHBhdGggZD0iTTE3IDJIMjJ2MmgtMXYxOUgzVjRIMnYtaTJoNVYxYTEgMSAwIDAgMSAxLTFoOGExIDEgMCAwIDEgMSAxdjF6TTUgNHYxN2gxNFY0SDV6TTkgMlY1aDZWMkg5eiIgZmlsbD0iIzAwNjgzNyIvPjwvc3ZnPg==" alt="Lab">
+                                </div>
+                                <span>Simulation Labs</span>
+                            </a>
+                            <a href="#">
+                                <div class="menu-icon">
+                                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0Ij48cGF0aCBmaWxsPSJub25lIiBkPSJNMCAwaDI0djI0SDB6Ii8+PHBhdGggZD0iTTkgMWgxMHYySDMzTDMgMjBhMiAyIDAgMCAwIDEuODUgMkgyMXYySDNhNCAwIDAgMS00LTRWMTBhNCA0IDAgMCAxIDMuNS0zLjlMOSAxek0zIDEwSDFWOGgydjIyaDE0VjhoLTJ2MTRIOVYzSDd2MjFoMTFWNTg1TDMgMTB6IiBmaWxsPSIjMDA2ODM3Ii8+PC9zdmc+" alt="Library">
+                                </div>
+                                <span>Library Resources</span>
+                            </a>
+                            <a href="#">
+                                <div class="menu-icon">
+                                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0Ij48cGF0aCBmaWxsPSJub25lIiBkPSJNMCAwaDI0djI0SDB6Ii8+PHBhdGggZD0iTTcgNWgxMGEyIDIgMCAwIDEgMiAydjEwYTIgMiAwIDAgMS0yIDJIN2EyIDIgMCAwIDEtMi0yVjdhMiAyIDAgMCAxIDItMnptMCAydjEwaDEwVjdIN3ptMyAyaDR2Nmgtd1Y5em0xIDJoMnYyaC0ydi0yeiIgZmlsbD0iIzAwNjgzNyIvPjwvc3ZnPg==" alt="Computer">
+                                </div>
+                                <span>Computer Labs</span>
+                            </a>
+                            <a href="#">
+                                <div class="menu-icon">
+                                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0Ij48cGF0aCBmaWxsPSJub25lIiBkPSJNMCAwaDI0djI0SDB6Ii8+PHBhdGggZD0iTTEwLjU2MiAyLjY0OWw1Ljk2OSA1Ljk2OS0yLjY0OSAyLjY0OS01Ljk2OS01Ljk2OXpNMTIgOGEzIDMgMCAxIDEgMCA2IDMgMyAwIDAgMSAwLTZ6IiBmaWxsPSIjMDA2ODM3Ii8+PC9zdmc+" alt="Hospital">
+                                </div>
+                                <span>Clinical Facilities</span>
+                            </a>
+                        </div>
+                    </li>
+                    
+                    <li class="nav-item"><a href="#" class="nav-link">Faculty/Staff</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">Best Features</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">Achievements</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">Contact Us</a></li>
+                </ul>
             </nav>
+            <div class="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         </div>
     </header>
     
-
-    <section class="section hero">
-        <div class="hero-image">
-            <div class="hero-content">
-                <h2 class="hero-title">YOUR</h2>
-                <h3 class="hero-subtitle">NURSING JOURNEY</h3>
-                <p class="hero-description">Starts here at St. Paul University Philippines!</p>
-                
-
-            </div>
-        </div>
-        
-        <div class="stats">
-            <div class="stat-box year-2022">
-                <h3>Passing Rate</h3>
-                <p style="font-size: 2rem; font-weight: bold;">2022</p>
-                <p style="font-size: 1.5rem;">98%</p>
-            </div>
-            <div class="stat-box year-2023">
-                <h3>Passing Rate</h3>
-                <p style="font-size: 2rem; font-weight: bold;">2023</p>
-                <p style="font-size: 1.5rem;">96%</p>
-            </div>
-            <div class="stat-box year-2024">
-                <h3>Passing Rate</h3>
-                <p style="font-size: 2rem; font-weight: bold;">2024</p>
-                <p style="font-size: 1.5rem;">97%</p>
-            </div>
-        </div>
-    </section>
-    
-    <div class="section-divider"></div>
-    
-    <div class="top-arrows">
-        <div class="arrow-green"></div>
-
+    <!-- Demo Content -->
+    <div class="demo-container">
+        <h1>Mega Dropdown Menu Preview</h1>
+        <p>This is a preview of a mega dropdown menu for SPUP. Hover over the "Subject Offerings" or "Facilities" navigation items to see the dropdown in action.</p>
+        <p>The dropdown is styled to match the image you provided, with a white box containing icons and text for each menu item.</p>
     </div>
-    <div class="top-arrows2">
-
-        <div class="arrow-yellow"></div>
-    </div>
-
-
-    <section class="section">
-        <div class="content-container">
-            <div class="main-content">
-                <div class="degree-info">
-                    <div class="degree-badge">
-                        <span>SPUP EXCELLENCE</span>
-                    </div>
-                    <h2 class="degree-title">BACHELOR OF SCIENCE IN NURSING</h2>
-                    <a href="#" class="course-button">Apply Now</a>
-                </div>
-                
-                <div class="course-details">
-                    <p>The Bachelor of Science in Nursing (BSN) program at St. Paul University Philippines prepares students to become competent, compassionate, and globally competitive nursing professionals. Our program combines state-of-the-art facilities, experienced faculty, and a comprehensive curriculum to develop the next generation of healthcare leaders.</p>
-                    <p>With a consistent board exam passing rate of over 95%, SPUP has established itself as one of the premier nursing schools in the Philippines, producing graduates who excel in both local and international healthcare settings.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Apply Now Section -->
-    <section class="apply-section">
-        <h2 class="apply-heading">START YOUR JOURNEY TODAY</h2>
-        <p class="apply-subheading">Join the SPUP Nursing family and be part of our tradition of excellence in healthcare education.</p>
-        <a href="#" class="apply-button">Apply Now</a>
-    </section>
-    
-    <!-- Student Perspectives Section (Third Image) -->
-    <section class="section">
-        <div class="section-header">
-            STUDENT PERSPECTIVES
-        </div>
-        
-        <div class="perspective-wrapper">
-            <div class="student-videos">
-                <div class="video-card">
-                    <div class="video-thumbnail" style="background-image: url('/api/placeholder/300/200')"></div>
-                    <div class="video-play">
-                        <div class="video-play-icon"></div>
-                    </div>
-                </div>
-                
-                <div class="video-card">
-                    <div class="video-thumbnail" style="background-image: url('/api/placeholder/300/200')"></div>
-                    <div class="video-play">
-                        <div class="video-play-icon"></div>
-                    </div>
-                </div>
-                
-                <div class="video-card">
-                    <div class="video-thumbnail" style="background-image: url('/api/placeholder/300/200')"></div>
-                    <div class="video-play">
-                        <div class="video-play-icon"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-
-<footer style="position: relative; margin-top: 60px;">
-    <div style="background-color: #006837; color: white; padding: 40px 0; position: relative;">
-        <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; padding: 0 40px; gap: 30px;">
-            
-
-            <div style="flex: 1; min-width: 300px; padding-right: 40px;">
-                <h3 class="contact-heading">
-                     <span class="heading-text">ST. PAUL UNIVERSITY  <br>PHILIPPINES</span> <br>
-                </h3>
-                
-                <p style="line-height: 1.6; font-size: 15px; max-width: 90%;">
-                    St. Paul University Philippines is located in Tuguegarao City, Cagayan, Philippines. Founded in 1907 by the Sisters of St. Paul of Chartres, it became the first University in the Cagayan Valley Region in 1982. It offers basic, tertiary, professional, and graduate education.
-                </p>
-            </div>
-
-
-            <div style="flex: 1; min-width: 300px;">
-                <h3 style="color: #ffcc00; font-size: 1.3rem; margin-bottom: 15px; font-weight: bold; text-transform: uppercase; border-bottom: 2px solid #ffcc00; padding-bottom: 5px;">
-                    Contact Details
-                </h3>
-                <ul style="list-style: none; padding: 0; margin: 0;">
-                    <li style="margin-bottom: 10px; display: flex; align-items: center;">
-                        <span style="display: inline-block; width: 20px; margin-right: 10px; text-align: center;">📞</span>
-                        <span>396-1987 to 396-1994</span>
-                    </li>
-                    <li style="margin-bottom: 10px; display: flex; align-items: center;">
-                        <span style="display: inline-block; width: 20px; margin-right: 10px; text-align: center;">📧</span>
-                        <span>spupadmin@spup.edu.ph</span>
-                    </li>
-                    <li style="display: flex; align-items: center;">
-                        <span style="display: inline-block; width: 20px; margin-right: 10px; text-align: center;">📍</span>
-                        <span>Tuguegarao City, Cagayan 3500</span>
-                    </li>
-                </ul>
-            </div>
-
-            <!-- University Motto Box -->
-            <div style="flex: 1; min-width: 300px; display: flex; justify-content: center;">
-                <div style="background-color: #f8f8f8; border-radius: 8px; padding: 20px; display: flex; flex-direction: column; justify-content: center; align-items: center; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
-                    <img src="SPUP-BANNER-FOOTER.png" alt="SPUP Logo" style="max-width: 180px; margin-bottom: 15px;">
-                    <div style="text-align: center; color: #006837; font-weight: bold; font-size: 16px;">
-                        Excellence and Leadership in Education
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Copyright Bar -->
-    <div style="background-color: #222222; color: white; padding: 15px 40px; position: relative;">
-        <div style="position: absolute; top: 0; left: 0; right: 0; height: 3px; background-color: #ffcc00;"></div>
-        
-        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto;">
-            <div style="font-size: 14px; text-align: center; flex: 1;">
-                Copyright © 2025 St. Paul University Philippines. All Rights Reserved.
-            </div>
-            <div style="font-size: 14px; text-align: center; flex: 1;">
-                Website Powered by: <span style="font-weight: bold;">BSIT-3A BATCH 2024-2025</span>
-            </div>
-        </div>
-    </div>
-</footer>
-
-
 </body>
 </html>
